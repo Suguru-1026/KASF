@@ -1,0 +1,12 @@
+{
+  "active_input_cells": 72695,
+  "active_output_cells": 72695,
+  "active_region_count": 3381,
+  "cell_conservation": true,
+  "implicit_cell_state": "S0",
+  "input_grid_complete": true,
+  "original_region_count": 20045,
+  "raw_pcm_mutated": false,
+  "rle_roundtrip": true,
+  "stage11_adapter_status": "stage11-source-replay"
+}
