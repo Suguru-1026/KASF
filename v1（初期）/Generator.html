@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>KASF Generator v1</title>
+
+<style>
+body {
+    font-family: system-ui, sans-serif;
+    background: #111;
+    color: #eee;
+    margin: 0;
+}
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+section {
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 12px 0;
+    background: #181818;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.row > * {
+    flex: 1;
+    min-width: 180px;
+}
+
+button,
+input,
+select {
+    font: inherit;
+    padding: 7px;
+    border-radius: 6px;
+    border: 1px solid #555;
+    background: #222;
+    color: #eee;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: .45;
+    cursor: default;
+}
+
+#drop {
+    border: 2px dashed #666;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#drop.drag {
+    border-color: #fff;
+}
+
+progress {
+    width: 100%;
+}
+
+pre {
+    background: #0b0b0b;
+    padding: 12px;
+    max-height: 360px;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
+small {
+    color: #aaa;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<main>
+
+<h1>KASF Generator v1</h1>
+
+<section>
+
+<h2>入力</h2>
+
+<div id="drop">
+    音声ファイルをドロップ<br>
+    または<br><br>
+
+    <input
+        id="file"
+        type="file"
+        accept="audio/*,.wav,.mp3"
+    >
+</div>
+
+<div class="row">
+
+    <button id="recordStart">
+        録音開始
+    </button>
+
+    <button id="recordStop" disabled>
+        録音停止
+    </button>
+
+    <button id="play" disabled>
+        入力音声を再生
+    </button>
+
+    <button id="clear">
+        消去
+    </button>
+
+</div>
+
+<p id="inputInfo">
+    入力なし
+</p>
+
+</section>
+
+
+<section>
+
+<h2>生成設定</h2>
+
+<div class="row">
+
+<label>
+Frame Duration
+
+<select id="frameMs">
+    <option value="10">10 ms</option>
+    <option value="20" selected>20 ms</option>
+    <option value="30">30 ms</option>
+    <option value="40">40 ms</option>
+</select>
+
+</label>
+
+
+<label>
+解析 Sample Rate
+
+<select id="rate">
+    <option value="44100" selected>
+        44,100 Hz
+    </option>
+
+    <option value="48000">
+        48,000 Hz
+    </option>
+
+    <option value="96000">
+        96,000 Hz
+    </option>
+
+    <option value="native">
+        入力のまま
+    </option>
+</select>
+
+</label>
+
+
+<label>
+Component 上限
+
+<input
+    id="maxComponents"
+    type="number"
+    min="1"
+    max="10000"
+    value="256"
+>
+
+</label>
+
+
+<label>
+相対振幅しきい値
+
+<input
+    id="threshold"
+    type="number"
+    min="0"
+    max="1"
+    step="0.0001"
+    value="0.005"
+>
+
+</label>
+
+</div>
+
+<br>
+
+<small>
+FFT + periodic Hann。
+50% overlap。
+Componentは振幅の大きい順に選択し、
+保存時は周波数順に並べる。
+</small>
+
+<br><br>
+
+<button id="generate" disabled>
+KASF生成
+</button>
+
+</section>
+
+
+<section>
+
+<h2>進捗</h2>
+
+<progress
+    id="progress"
+    value="0"
+    max="1">
+</progress>
+
+<pre id="log">待機中</pre>
+
+</section>
+
+
+<section>
+
+<h2>結果</h2>
+
+<div id="result">
+    未生成
+</div>
+
+<br>
+
+<button id="download" disabled>
+    KASFを保存
+</button>
+
+</section>
+
+</main>
+
+<script src="kasf-generator.js"></script>
+
+</body>
+</html>
