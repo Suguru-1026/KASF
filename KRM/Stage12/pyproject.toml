@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "krm"
+version = "1.1.0"
+description = "Integrated KRM audio residual analysis and research workbench"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+research = ["numpy>=1.24"]
+stage08 = ["numpy>=1.24", "scipy>=1.10", "matplotlib>=3.7"]
+stage11 = ["numpy>=1.24", "scipy>=1.10"]
+
+[tool.setuptools]
+packages = ["krm_proto", "krm_td_csc", "krm_stage12", "krm_stage11", "krm_stage11.analysis"]
+
+[project.scripts]
+krm-stage11-adapter = "krm_stage12.stage11_adapter:main"
