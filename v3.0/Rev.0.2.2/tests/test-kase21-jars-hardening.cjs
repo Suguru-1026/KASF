@@ -1,0 +1,41 @@
+
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const path=require('path');
+const htmlPath=process.argv[2]||path.join(__dirname,'..','KASF-v3.0-Rev0.2.2.html');
+const html=fs.readFileSync(htmlPath,'utf8');
+function moduleSlice(start,end){
+ const a=html.indexOf(start),b=html.indexOf(end,a+start.length);
+ if(a<0||b<0)throw Error('module boundary missing: '+start);
+ return html.slice(a,b);
+}
+const ctx={console,Math,Float64Array,Float32Array,Uint8Array,Int32Array,Array,Map,Set,Number,Object,String,Boolean,Promise};
+ctx.self=ctx;ctx.globalThis=ctx;
+vm.createContext(ctx);
+vm.runInContext(moduleSlice('/* KASE-2 Research Engine','/* KASF Rev0.5 — Hybrid numerical search'),ctx);
+const K=ctx.KASF05_KASE;
+assert(K,'KASE module failed to initialize');
+const objective=x=>(x[0]-.27)**2*2+(x[1]+.61)**2*0.7+(x[2]-.12)**2*3;
+const a=K.kaseCMAES({dimension:3,evaluate:objective,seed:77,generations:45,population:16,initialSigma:.4});
+assert(Number.isFinite(a.score)&&a.score<.02,'CMA-ES failed to converge on bounded quadratic: '+JSON.stringify(a));
+assert(a.x.every(v=>v>=-1&&v<=1),'CMA-ES returned out-of-bounds coordinate');
+const b=K.kaseCMAES({dimension:3,evaluate:objective,seed:77,generations:45,population:16,initialSigma:.4});
+assert.deepStrictEqual(a.x,b.x,'CMA-ES is not deterministic');
+const none=K.kaseCMAES({dimension:3,evaluate:()=>NaN,seed:1,generations:3,population:8});
+assert(none.score===Infinity&&none.x.every(Number.isFinite),'CMA-ES mishandled non-finite objective');
+const c=K.kaseC({dimension:2,evaluate:x=>(x[0]-.2)**2+(x[1]+.3)**2,seed:4,generations:8,population:8});
+assert(Number.isFinite(c.score)&&c.x.every(v=>v>=-1&&v<=1),'C2 returned invalid result');
+const d=K.kaseD({dimension:2,evaluate:x=>(x[0]-.2)**2+(x[1]+.3)**2,seed:4,generations:4,population:8});
+assert(Number.isFinite(d.score)&&d.x.every(v=>v>=-1&&v<=1),'jDE returned invalid result');
+vm.runInContext(moduleSlice('/* Rev0.7 JARS - Joint Adaptive Residual Synthesis','/* KASF Evolution Rev.0.8'),ctx);
+ctx.KASF05_Reader={};ctx.KASF06_Detail={exactGate:()=>({accept:true,gain:1})};ctx.KASF07_HPSS={};ctx.KASF07_Kalman={};
+ctx.KASF05_Loss={spectral:()=>({linear:NaN,balanced:0})};
+const gate=ctx.KASF07_JARS.jointGate(new Float64Array([1,0]),new Float64Array([0,0]),new Float64Array([.1,0]),'tail',{rate:48000});
+assert(!gate.accept&&gate.reason==='non-finite-spectral','JARS accepted a non-finite spectral score');
+const bad=ctx.KASF07_JARS.jointGate(new Float64Array([1]),new Float64Array([0,0]),new Float64Array([.1]),'tail',{rate:48000});
+assert(!bad.accept&&bad.reason==='invalid-input','JARS accepted mismatched input arrays');
+ctx.KASF05_Loss={spectral:()=>({linear:1,balanced:1})};
+ctx.KASF06_Detail={exactGate:()=>({accept:true,gain:1})};
+const ok=ctx.KASF07_JARS.jointGate(new Float64Array([1,0]),new Float64Array([0,0]),new Float64Array([.1,0]),'tail',{rate:48000});
+assert(ok.accept,'JARS rejected a finite improving candidate: '+JSON.stringify(ok));
+console.log('PASS: KASE-CMAES bounded quadratic / deterministic seed / NaN objective / C2 / jDE');
+console.log('PASS: JARS invalid input / non-finite spectral rejection / finite improvement acceptance');
