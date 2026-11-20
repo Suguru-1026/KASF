@@ -1,5 +1,5 @@
-# KASF
-## Kinoko Audio Spectrum Format
+# KAS(KASF)
+## Kinoko Audio Structure (File)
 *Experimental Audio Encoding, Compression and Reconstruction Project*
 
 > Project documentation / README  
