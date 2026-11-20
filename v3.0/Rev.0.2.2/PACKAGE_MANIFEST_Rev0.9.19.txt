@@ -1,0 +1,24 @@
+KASF 2.0 Evolution — Rev0.9.19 Three-Worker
+
+Primary executable:
+  KASF-2.0-Evolution-Rev0.9.19-Three-Worker.html
+
+Documentation:
+  README-Rev0.9.19.md
+  CHANGELOG-Rev0.9.19.md
+  TEST_RESULTS_Rev0.9.19.md
+
+Added tests:
+  tests/test-three-worker-merge.cjs
+  tests/test-three-worker-edgecases.cjs
+
+Retained from Rev0.9.18 package:
+  KASF-2.0-Evolution-Rev0.9.18-Short-Approx-Resynthesis.html (regression baseline)
+  tests/ existing regression scripts
+  src/kasf_wasm.cpp
+  build/kasf-core-clang-validation.wasm
+  tools/embed_wasm.py
+  build scripts
+  comparison/ historical HTML versions
+
+The standalone HTML is the user-facing runnable artifact. The ZIP is the source/test archive.

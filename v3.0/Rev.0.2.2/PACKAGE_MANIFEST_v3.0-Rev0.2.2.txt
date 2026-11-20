@@ -1,0 +1,49 @@
+KASF v3.0 Rev.0.2.2 — Cooperative JARS development build
+
+Primary executable:
+  KASF-v3.0-Rev0.2.2.html
+Baseline executable:
+  KASF-2.0-Evolution-Rev0.9.19-Three-Worker.html
+Earlier baseline:
+  KASF-2.0-Evolution-Rev0.9.18-Short-Approx-Resynthesis.html
+
+Format: KASF v1 (unchanged)
+Reader: v1.2 (unchanged)
+Architecture: Rev0.9.19 Three-Worker A/B/C (preserved)
+
+Rev0.9.20 additions:
+  - Stable-track phase innovation limiter
+  - Final isolated one-frame phase-spike correction
+  - Temporal persistence Musical Noise Guard
+  - OFF / Conservative / Balanced controls for both guards
+  - Attack, transient, edge, harmonic and persistence protection
+  - No component deletion
+
+2026-11-20 source-package maintenance:
+  - Fixed WASM build scripts to target the primary v3.0 Rev.0.2.2 HTML
+  - Added KASF_HTML / KASF_WASM_OUT overrides
+  - Added atomic WASM embedding and --check verification
+  - Added tests/test-wasm-build-pipeline.cjs
+  - Added WASM_BUILD_PIPELINE.md and WASM_BUILD_PIPELINE_TEST_RESULTS.md
+  - Confirmed Clang-built WASM matches the existing embedded 17,706-byte binary
+
+Test entry points:
+  tests/test-temporal-guards.cjs
+  tests/test-html-script-syntax.cjs
+  tests/test-three-worker-merge.cjs
+  tests/test-three-worker-edgecases.cjs
+  tests/test-wasm-build-pipeline.cjs
+
+Validation summary:
+  27 of 28 test scripts passed in the combined validation record.
+  test-short-approx-stress.cjs did not complete within the 300-second window.
+  Emscripten production build was not run because em++ was unavailable.
+  Real-music listening / end-to-end Rev0.9.20 browser validation remain outstanding.
+
+All previous source, WASM build artifacts, comparison files and inherited tests are retained.
+
+Product version: KASF v3.0 Rev.0.2.2
+Save filename tag: v3-R0-2-2
+KASF wire format: v1 (unchanged)
+Reader: v1.2 (unchanged)
+KCP format identifier: KASF-KCP-1 (unchanged)
