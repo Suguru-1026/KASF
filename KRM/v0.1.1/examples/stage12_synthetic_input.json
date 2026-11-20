@@ -1,0 +1,19 @@
+{
+  "schema_version": "krm-stage11-normalized-1.0",
+  "input_manifest": {
+    "input_id": "synthetic-intermittent-tone-demo", "sample_rate": 44100,
+    "fft_size": 2048, "hop_size": 512, "window": "hann",
+    "center_padding": "centered", "frame_timestamp_convention": "center",
+    "frequency_bin_convention": "rfft", "stage11_version": "synthetic-fixture-1",
+    "channel_id": 0, "resolution_id": "stft-2048-512", "frame_count": 8, "bin_count": 32
+  },
+  "cells": {
+    "0,10": {"state":"S2","power":0.001,"delta_db":10,"local_floor_power":0.0001},
+    "0,11": {"state":"S2","power":0.001,"delta_db":10,"local_floor_power":0.0001},
+    "1,10": {"state":"S2","power":0.001,"delta_db":10,"local_floor_power":0.0001},
+    "1,11": {"state":"S3","power":0.002,"delta_db":13,"local_floor_power":0.0001},
+    "3,10": {"state":"S2","power":0.001,"delta_db":10,"local_floor_power":0.0001},
+    "3,11": {"state":"S2","power":0.001,"delta_db":10,"local_floor_power":0.0001},
+    "4,10": {"state":"S2","power":0.001,"delta_db":10,"local_floor_power":0.0001}
+  }
+}
