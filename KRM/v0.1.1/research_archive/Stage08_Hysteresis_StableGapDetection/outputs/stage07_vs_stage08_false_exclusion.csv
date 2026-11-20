@@ -1,0 +1,7 @@
+case,stage07_single_threshold_false_exclusion_rate,stage08_priority_3pair_false_exclusion_rate,stage08_guarded_6pair_false_exclusion_rate
+clean_two_band,0.0,0.0,0.0
+weak_in_gap_20db,0.11392405063291139,0.10481012658227848,0.0
+weak_in_gap_26db,0.11392405063291139,0.10481012658227848,0.0
+weak_in_gap_36db,0.11392405063291139,0.10481012658227848,0.0
+temporary_in_gap,0.0,0.0,0.0
+broadband,0.0,0.0,0.0
