@@ -1,7 +1,0 @@
-case,truth_occupied_cells,false_excluded_truth_cells_guarded,false_exclusion_rate_guarded_6pair,false_exclusion_rate_priority_3pair,expected_1000_2000_gap_recall_guarded,expected_1000_2000_gap_recall_priority,weak_or_temporary_band_cells,weak_or_temporary_false_exclusion_rate_guarded,weak_or_temporary_false_exclusion_rate_priority,priority_gap_regions_3pair,guarded_gap_regions_6pair
-clean_two_band,1750,0,0.0,0.0,0.0,0.5121739130434783,0,,,1,0
-weak_in_gap_20db,1975,0,0.0,0.10481012658227848,0.0,0.52,225,0.0,0.92,1,0
-weak_in_gap_26db,1975,0,0.0,0.10481012658227848,0.0,0.52,225,0.0,0.92,1,0
-weak_in_gap_36db,1975,0,0.0,0.10481012658227848,0.0,0.508695652173913,225,0.0,0.92,1,0
-temporary_in_gap,1820,0,0.0,0.0,0.0,0.3804347826086957,70,0.0,0.0,2,0
-broadband,18575,0,0.0,0.0,,,0,,,0,0
