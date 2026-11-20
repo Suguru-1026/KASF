@@ -1,0 +1,88 @@
+{
+  "test": "real-audio FastGen and KRM bridge verification",
+  "date": "2026-11-14",
+  "inputs": [
+    {
+      "label": "Source A",
+      "source_wav_sha256": "168aea51571528e0244563f3e6eaddfa9bc5ff1f53e217d582003af22416b05f",
+      "sample_rate_hz": 48000,
+      "channels": 1,
+      "sample_width_bytes": 2,
+      "sample_count_per_channel": 415744,
+      "duration_seconds": 8.6613333333,
+      "frame_count": 1734,
+      "component_count": 14193,
+      "source_base_snr_db": 22.1559938947,
+      "kasf_sha256": "b92bce3c1db225665f7fb57b1846001c286ab53e81826831aa081ecb92f2509a",
+      "base_wav_sha256": "aa360d72257d8abaf5cedfe7347ba9eeef1f29840d663dd03009a055e6bdce71",
+      "krm_if_bytes": 6655817,
+      "krm_if_verify": "PASS",
+      "restored_pcm_byte_identical_to_source": true,
+      "source_wav_sha256_equals_restored_wav_sha256": true,
+      "greedy": {
+        "generator_elapsed_seconds_without_base": 0.28594962,
+        "tracks_created": 1800,
+        "matches": 12393,
+        "track_lifetime_median_frames": 5,
+        "track_lifetime_p90_frames": 18,
+        "track_lifetime_max_frames": 53,
+        "tracks_at_least_50_frames": 3
+      },
+      "hungarian": {
+        "generator_elapsed_seconds_without_base": 0.36667176,
+        "tracks_created": 1541,
+        "matches": 12652,
+        "track_lifetime_median_frames": 6,
+        "track_lifetime_p90_frames": 22,
+        "track_lifetime_max_frames": 79,
+        "tracks_at_least_50_frames": 13
+      }
+    },
+    {
+      "label": "Source B",
+      "source_wav_sha256": "ecc5504eefa07655d35a61dfea3cb3af66bd00581a39f229ca1b060d9cfaeb91",
+      "sample_rate_hz": 44100,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "sample_count_per_channel": 749025,
+      "duration_seconds": 16.9846938776,
+      "frame_count": 3391,
+      "component_count": 23294,
+      "source_base_snr_db": 8.9817127043,
+      "kasf_sha256": "1662140fbca0b9643f1c9bb8aab8e57d065e833a7a9631c433fdace9dfad2778",
+      "base_wav_sha256": "4608ff2aed1fa58c32f685f1b69eec7a8936e8b221cc0eaa37b16dd439948810",
+      "krm_if_bytes": 23973513,
+      "krm_if_verify": "PASS",
+      "restored_pcm_byte_identical_to_source": true,
+      "source_wav_sha256_equals_restored_wav_sha256": true,
+      "greedy": {
+        "generator_elapsed_seconds_without_base": 0.51092738,
+        "tracks_created": 5566,
+        "matches": 17728,
+        "channels": {
+          "0": {"track_count": 3808, "median_frames": 3, "p90_frames": 9, "max_frames": 49, "tracks_at_least_10_frames": 368, "tracks_at_least_50_frames": 0},
+          "1": {"track_count": 1758, "median_frames": 2, "p90_frames": 11, "max_frames": 53, "tracks_at_least_10_frames": 212, "tracks_at_least_50_frames": 1}
+        }
+      },
+      "hungarian": {
+        "generator_elapsed_seconds_without_base": 0.67872707,
+        "tracks_created": 5286,
+        "matches": 18008,
+        "channels": {
+          "0": {"track_count": 3604, "median_frames": 3, "p90_frames": 10, "max_frames": 60, "tracks_at_least_10_frames": 396, "tracks_at_least_50_frames": 1},
+          "1": {"track_count": 1682, "median_frames": 2, "p90_frames": 12, "max_frames": 71, "tracks_at_least_10_frames": 229, "tracks_at_least_50_frames": 1}
+        }
+      }
+    }
+  ],
+  "invariants": {
+    "greedy_and_hungarian_kasf_files_byte_identical_per_source": true,
+    "greedy_and_hungarian_base_wavs_byte_identical_per_source": true,
+    "hungarian_bridge_restore_byte_identical_to_source_for_both_sources": true
+  },
+  "limitations": [
+    "Base is experimental local-Reader OLA output with KRM-PROTO-PCM-Q-v1, not the official full-application KASF PCM export.",
+    "The source/base SNR is not the KRM exact-restoration score; low SNR means more energy is carried by the exact Raw Residual.",
+    "Real-audio track maps remain fragmented, especially Source B with median track lifetime of two to three frames."
+  ]
+}

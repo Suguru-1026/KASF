@@ -1,0 +1,56 @@
+{
+  "audio": {
+    "filename": "audiomass-output (3).wav",
+    "channels": 2,
+    "sample_rate_hz": 44100,
+    "sample_width_bytes": 2,
+    "frames": 749025,
+    "duration_seconds": 16.98469387755102,
+    "normalisation_peak_before": 29936.0,
+    "normalisation_peak_after": 0.75
+  },
+  "selected_window": {
+    "channel_index": 0,
+    "start_sample": 166336,
+    "sample_count": 512
+  },
+  "dictionary": {
+    "atom_length": 24,
+    "atom_count": 6,
+    "seed": 37
+  },
+  "lambda": 0.00010761806180872601,
+  "convergence_definition": "converged requires both a small coefficient step and a small proximal-gradient mapping norm",
+  "trials": [
+    {
+      "iteration_cap": 80,
+      "iterations_used": 80,
+      "converged": false,
+      "optimality_residual": 0.0002691481422712567,
+      "final_objective": 3.488652485865914e-05,
+      "snr_db": 24.054516698045084,
+      "relative_l2_error": 0.0627009563665385,
+      "elapsed_seconds": 0.09132213700013381
+    },
+    {
+      "iteration_cap": 200,
+      "iterations_used": 200,
+      "converged": false,
+      "optimality_residual": 6.849772830601254e-05,
+      "final_objective": 3.412180252229859e-05,
+      "snr_db": 24.22937362669802,
+      "relative_l2_error": 0.06145133450565608,
+      "elapsed_seconds": 0.20593624499997532
+    },
+    {
+      "iteration_cap": 500,
+      "iterations_used": 441,
+      "converged": true,
+      "optimality_residual": 9.899120603835852e-06,
+      "final_objective": 3.4041411195027885e-05,
+      "snr_db": 24.28383320566569,
+      "relative_l2_error": 0.061067246705306694,
+      "elapsed_seconds": 0.396060435000436
+    }
+  ]
+}

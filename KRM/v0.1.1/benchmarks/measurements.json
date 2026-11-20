@@ -1,0 +1,58 @@
+{
+  "format": "KRM-FastGen-Benchmark-Result",
+  "revision": "Draft 0.5",
+  "date": "2026-11-14",
+  "environment": {
+    "compiler": "GCC 14.2.0",
+    "node": "v22.16.0",
+    "python": "3.13.5",
+    "platform": "Linux execution container",
+    "rev_0_9_20_html_sha256": "5647bf57659862432f9e9d58bac6d9ad6bfcd976281b698a7b18dc2e662e73ee"
+  },
+  "input": {
+    "duration_seconds": 10,
+    "sample_rate_hz": 48000,
+    "channels": 2,
+    "pcm_bits": 16,
+    "content": "synthetic; three sinusoidal/chirped components per channel"
+  },
+  "generator": {
+    "frame_duration_ms": 10,
+    "max_components_per_channel_frame": 48,
+    "threshold_dbfs": -58,
+    "minimum_frequency_hz": 15,
+    "edge_guard_samples_each_side": 240,
+    "frame_count": 2001,
+    "component_count": 21041,
+    "kasf_bytes": 158294,
+    "native_frame_loop_seconds": 0.80960091,
+    "native_process_wall_seconds": 0.82,
+    "base_wav_bytes": 1920044
+  },
+  "bridge": {
+    "full_fastgen_base_krc_wall_seconds": 4.29595071,
+    "outer_python_verify_restore_script_seconds": 10.80,
+    "krmi_bytes": 15362942,
+    "verification": "PASS",
+    "samples_checked_including_channels": 960000,
+    "restored_source_pcm_byte_identical": true
+  },
+  "quality": {
+    "source_base_snr_db": 51.86640625779034,
+    "first_100ms_snr_db": 48.97296224448283,
+    "last_100ms_snr_db": 49.50736128498248
+  },
+  "reader_parity": {
+    "actual_source": "KASF-2.0-Evolution-Rev0.9.20-Temporal-Guards.html / KASF05_Reader.render",
+    "values_compared": 960960,
+    "max_abs_float64_difference": 2.220446049250313e-16,
+    "mean_abs_float64_difference": 2.5901627633556662e-18,
+    "non_identical_float64_values": 73084,
+    "native_vs_python_quantized_base_byte_identical": true
+  },
+  "automated_tests": {
+    "passed": 40,
+    "failed": 0
+  },
+  "scope_note": "One synthetic workload in one execution environment; not a general speed or quality guarantee, and not a full Rev.0.9.20 Generator/KASE/MRA port."
+}

@@ -1,0 +1,65 @@
+{
+  "test": "metadata-only temporal tracker",
+  "source": {
+    "sample_rate_hz": 16000,
+    "channels": 2,
+    "seconds": 2.0,
+    "sample_width_bytes": 2
+  },
+  "tracking_enabled": {
+    "base_pcm_sha256": "fe2af79c22cfece16490bc8e8bcff53af8da4e37dd8ff2f2b5eeaec8d0c2d71c",
+    "base_pcm_bytes": 128000,
+    "base_params": [
+      2,
+      2,
+      16000,
+      32000
+    ],
+    "snr_db": 50.31797768248858,
+    "generator_frame_count": 81,
+    "component_count": 449,
+    "track_map": {
+      "rows": 162,
+      "expected_rows": 162,
+      "sha256": "43dfd0bc74cecfc1a4d01d566a18618d788faefd410df083b06b854cee599335",
+      "unique_track_ids_by_channel": {
+        "0": 8,
+        "1": 6
+      },
+      "persistent_tracks_by_channel": {
+        "0": 2,
+        "1": 2
+      }
+    },
+    "elapsed_median_seconds": 0.03172582199977114,
+    "elapsed_runs_seconds": [
+      0.029258715999731066,
+      0.03172582199977114,
+      0.03376664999996137
+    ]
+  },
+  "tracking_disabled": {
+    "base_pcm_sha256": "fe2af79c22cfece16490bc8e8bcff53af8da4e37dd8ff2f2b5eeaec8d0c2d71c",
+    "base_pcm_bytes": 128000,
+    "base_params": [
+      2,
+      2,
+      16000,
+      32000
+    ],
+    "snr_db": 50.31797768248858,
+    "generator_frame_count": 81,
+    "component_count": 449,
+    "elapsed_median_seconds": 0.033299686999725964,
+    "elapsed_runs_seconds": [
+      0.029083834000175557,
+      0.033299686999725964,
+      0.038436087999798474
+    ]
+  },
+  "invariants": {
+    "kasf_files_byte_identical": true,
+    "base_pcm_byte_identical": true,
+    "track_map_rows_valid": true
+  }
+}

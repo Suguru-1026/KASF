@@ -1,0 +1,101 @@
+{
+  "benchmark": "KRM-TEA-vs-Events-Synthetic-Role-Check-0.1",
+  "sample_rate_hz": 48000,
+  "window_samples": 240,
+  "hop_samples": 120,
+  "events_parameters": {
+    "threshold": null,
+    "baseline_multiplier": 3.0,
+    "absolute_floor": 1.0,
+    "merge_gap_frames": 1
+  },
+  "tea_parameters": {
+    "baseline_frames": 8,
+    "rise_ratio_threshold": 3.0,
+    "crest_factor_threshold": 5.0,
+    "absolute_rms_floor": 1.0,
+    "merge_gap_frames": 1
+  },
+  "cases": {
+    "isolated_impulse": {
+      "annotation": "one-sample transient",
+      "events_energy_activity": [
+        {
+          "onset_sample": 11880,
+          "end_sample_exclusive": 12240,
+          "frame_count": 2,
+          "classification": "energy_activity_candidate"
+        }
+      ],
+      "tea_transient_candidates": [
+        {
+          "onset_sample": 11880,
+          "end_sample_exclusive": 12240,
+          "frame_count": 2,
+          "classification": "transient_activity_candidate"
+        }
+      ]
+    },
+    "short_tone_burst": {
+      "annotation": "10-ms burst onset and activity",
+      "events_energy_activity": [
+        {
+          "onset_sample": 11880,
+          "end_sample_exclusive": 12600,
+          "frame_count": 5,
+          "classification": "energy_activity_candidate"
+        }
+      ],
+      "tea_transient_candidates": [
+        {
+          "onset_sample": 11880,
+          "end_sample_exclusive": 12480,
+          "frame_count": 4,
+          "classification": "transient_activity_candidate"
+        }
+      ]
+    },
+    "sustained_tone_burst": {
+      "annotation": "100-ms burst onset and activity",
+      "events_energy_activity": [
+        {
+          "onset_sample": 11880,
+          "end_sample_exclusive": 16920,
+          "frame_count": 41,
+          "classification": "energy_activity_candidate"
+        }
+      ],
+      "tea_transient_candidates": [
+        {
+          "onset_sample": 11880,
+          "end_sample_exclusive": 12480,
+          "frame_count": 4,
+          "classification": "transient_activity_candidate"
+        }
+      ]
+    },
+    "stationary_tone": {
+      "annotation": "stationary activity; no onset",
+      "events_energy_activity": [],
+      "tea_transient_candidates": []
+    },
+    "stationary_noise": {
+      "annotation": "stationary noise-like activity; no onset",
+      "events_energy_activity": [],
+      "tea_transient_candidates": []
+    },
+    "impulse_on_tone": {
+      "annotation": "one-sample transient over stationary tone",
+      "events_energy_activity": [],
+      "tea_transient_candidates": [
+        {
+          "onset_sample": 11880,
+          "end_sample_exclusive": 12240,
+          "frame_count": 2,
+          "classification": "transient_activity_candidate"
+        }
+      ]
+    }
+  },
+  "scope": "Synthetic behavioral comparison only; no real KASF residual or accuracy claim."
+}

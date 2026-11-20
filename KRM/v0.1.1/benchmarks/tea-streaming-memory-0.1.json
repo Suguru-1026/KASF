@@ -1,0 +1,13 @@
+{
+  "benchmark": "KRM-TEA-Streaming-Memory-Check-0.1",
+  "sample_rate_hz": 48000,
+  "duration_seconds": 10,
+  "window_samples": 1024,
+  "hop_samples": 256,
+  "chunk_samples": 8192,
+  "batch_peak_python_bytes": 4766032,
+  "streaming_peak_python_bytes": 223004,
+  "batch_event_count": 9,
+  "streaming_event_count": 9,
+  "scope": "tracemalloc Python allocation comparison only; batch call creates and retains the full input list while streaming generates chunks on demand, so this is an end-to-end usage comparison, not isolated detector overhead or process RSS/runtime/real-audio accuracy"
+}

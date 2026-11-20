@@ -1,0 +1,126 @@
+{
+  "benchmark_version": "KRM-TD-CDL-Benchmark-0.1",
+  "algorithm": "Alternating Convolutional Dictionary Learning; direct time-domain operators",
+  "results": [
+    {
+      "audio": {
+        "filename": "audiomass-output (3).wav",
+        "channels": 2,
+        "sample_rate_hz": 44100,
+        "sample_width_bytes": 2,
+        "frames": 749025,
+        "duration_seconds": 16.98469387755102,
+        "normalisation_peak_before": 29936.0,
+        "normalisation_peak_after": 0.75
+      },
+      "split": {
+        "segment_samples": 2048,
+        "train_window_starts": [
+          186744,
+          560232,
+          746977
+        ],
+        "validation_window_starts": [
+          0,
+          373488
+        ],
+        "train_examples_including_channels": 6,
+        "validation_examples_including_channels": 4,
+        "channel_policy": "channels treated as independent examples with one shared dictionary; no joint channel model"
+      },
+      "model": {
+        "atom_length": 128,
+        "atom_count": 3,
+        "filter_parameter_count": 384,
+        "lambda": 0.0016450572960190874,
+        "solver": "direct-time-domain monotone FISTA + projected unit-sphere dictionary gradient + Armijo backtracking"
+      },
+      "initial_dictionary": {
+        "train": {
+          "aggregate_snr_db": 9.453050855090817,
+          "relative_l2_error": 0.33678090313997355,
+          "mean_segment_snr_db": 8.600398780490684,
+          "coded_examples": 6,
+          "coding_converged_count": 0,
+          "coding_iterations_total": 210,
+          "mean_optimality_residual": 0.0064564502236507315,
+          "max_optimality_residual": 0.017577138155997922
+        },
+        "validation": {
+          "aggregate_snr_db": 6.556447554908866,
+          "relative_l2_error": 0.4700863300694366,
+          "mean_segment_snr_db": 7.285644085243788,
+          "coded_examples": 4,
+          "coding_converged_count": 0,
+          "coding_iterations_total": 140,
+          "mean_optimality_residual": 0.0017791823708593877,
+          "max_optimality_residual": 0.0026789451594801937
+        }
+      },
+      "learned_dictionary": {
+        "train": {
+          "aggregate_snr_db": 14.34775603985325,
+          "relative_l2_error": 0.19169562357086894,
+          "mean_segment_snr_db": 10.846382149960656,
+          "coded_examples": 6,
+          "coding_converged_count": 0,
+          "coding_iterations_total": 210,
+          "mean_optimality_residual": 0.005463804288941206,
+          "max_optimality_residual": 0.016533237662923587
+        },
+        "validation": {
+          "aggregate_snr_db": 7.747430631558096,
+          "relative_l2_error": 0.4098533303814898,
+          "mean_segment_snr_db": 7.915519137307924,
+          "coded_examples": 4,
+          "coding_converged_count": 0,
+          "coding_iterations_total": 140,
+          "mean_optimality_residual": 0.0015368131139533406,
+          "max_optimality_residual": 0.002641851292342649
+        },
+        "objective_history": [
+          0.01896582834590059,
+          0.01644805744106511,
+          0.015567660214360953
+        ],
+        "smooth_loss_history": [
+          0.008019986980105233,
+          0.0045603076015875935,
+          0.0035385711035583528
+        ],
+        "dictionary_step_history": [
+          50.0,
+          50.0,
+          50.0
+        ],
+        "dictionary_gradient_norm_history": [
+          0.010301030275142134,
+          0.004494857082992004,
+          0.002956653456873319
+        ],
+        "coding_converged_count": 0,
+        "coding_solve_count": 18,
+        "mean_training_optimality_residual_over_all_outer_solves": 0.004066758149265995,
+        "max_training_optimality_residual_over_all_outer_solves": 0.017332122823918286,
+        "inactive_atoms": [],
+        "atom_statistics": {
+          "mean_absolute_initial_to_learned_cosine_same_index": 0.9065654317380926,
+          "min_absolute_initial_to_learned_cosine_same_index": 0.8457480414871166,
+          "max_pairwise_absolute_coherence_learned_dictionary": 0.07972768616930555,
+          "mean_pairwise_absolute_coherence_learned_dictionary": 0.06255968670501195
+        }
+      },
+      "timing_seconds": {
+        "baseline_encode_train_and_validation": 0.5031429829996341,
+        "alternating_dictionary_learning_only": 0.6375543340000149
+      },
+      "caveats": [
+        "This is a small, in-sample dictionary-training experiment with a held-out time-window validation split, not a broad generalisation claim.",
+        "The validation windows are not used for dictionary initialisation or learning.",
+        "Atom identity and sign are permutation/sign ambiguous; same-index cosine is diagnostic only.",
+        "No FFT/STFT/DCT or frequency-domain representation is used.",
+        "The dictionary is shared across channels, but activations are independent; inter-channel coupling is not implemented."
+      ]
+    }
+  ]
+}

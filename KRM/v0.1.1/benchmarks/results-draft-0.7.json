@@ -1,0 +1,153 @@
+{
+  "benchmark_version": "KRM-TD-CSC-Benchmark-0.1",
+  "synthetic": {
+    "signal_samples": 512,
+    "atom_lengths": [
+      12,
+      24,
+      48,
+      24
+    ],
+    "known_sparse_events": 16,
+    "lambda": 0.002,
+    "fista": {
+      "iterations": 1096,
+      "converged": true,
+      "elapsed_seconds": 0.6802820109996901,
+      "snr_db": 39.83131531928996,
+      "relative_l2_error": 0.010196103469952535,
+      "nonzero_coefficients": 95,
+      "objective_first": 0.5167580006989969,
+      "objective_last": 0.01552349788054219
+    },
+    "admm_direct_time_domain": {
+      "iterations": 129,
+      "converged": true,
+      "elapsed_seconds": 0.8132945249999466,
+      "total_cg_iterations": 1892,
+      "snr_db": 39.5162188792128,
+      "relative_l2_error": 0.010572776606431446,
+      "objective_first": 0.4792200908526595,
+      "objective_last": 0.015556216374206996,
+      "rho_final": 0.2
+    }
+  },
+  "real_audio": [
+    {
+      "path_name": "audiomass-output (2).wav",
+      "audio": {
+        "channels": 1,
+        "sample_rate_hz": 48000,
+        "sample_width_bytes": 2,
+        "samples_used": 4096,
+        "peak_before_normalization": 197.0
+      },
+      "method": "in-sample waveform-patch dictionary initialisation; no FFT/STFT used",
+      "results": {
+        "multi_scale": {
+          "atom_lengths": [
+            16,
+            16,
+            32,
+            32,
+            64,
+            64
+          ],
+          "atom_count": 6,
+          "filter_parameter_count": 224,
+          "lambda": 0.030865722557279752,
+          "iterations": 300,
+          "converged": false,
+          "elapsed_seconds": 0.7321577829998205,
+          "snr_db": 19.371632336897854,
+          "relative_l2_error": 0.10750245523336222,
+          "nonzero_coefficients": 2525,
+          "coefficient_count": 24794,
+          "objective_first": 39.913498611049974,
+          "objective_last": 9.383547400721126
+        },
+        "single_scale": {
+          "atom_lengths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "atom_count": 7,
+          "filter_parameter_count": 224,
+          "lambda": 0.024130781636354143,
+          "iterations": 300,
+          "converged": false,
+          "elapsed_seconds": 0.7393418510000629,
+          "snr_db": 23.953151087046628,
+          "relative_l2_error": 0.06343697211228301,
+          "nonzero_coefficients": 2885,
+          "coefficient_count": 28889,
+          "objective_first": 23.373194938631144,
+          "objective_last": 6.510215980594649
+        }
+      }
+    },
+    {
+      "path_name": "audiomass-output (3).wav",
+      "audio": {
+        "channels": 2,
+        "sample_rate_hz": 44100,
+        "sample_width_bytes": 2,
+        "samples_used": 4096,
+        "peak_before_normalization": 131.5
+      },
+      "method": "in-sample waveform-patch dictionary initialisation; no FFT/STFT used",
+      "results": {
+        "multi_scale": {
+          "atom_lengths": [
+            16,
+            16,
+            32,
+            32,
+            64,
+            64
+          ],
+          "atom_count": 6,
+          "filter_parameter_count": 224,
+          "lambda": 0.04281743495076663,
+          "iterations": 300,
+          "converged": false,
+          "elapsed_seconds": 0.664674040999671,
+          "snr_db": 20.00425086524951,
+          "relative_l2_error": 0.0999510720788339,
+          "nonzero_coefficients": 2133,
+          "coefficient_count": 24794,
+          "objective_first": 25.53296053952531,
+          "objective_last": 9.42292482090358
+        },
+        "single_scale": {
+          "atom_lengths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "atom_count": 7,
+          "filter_parameter_count": 224,
+          "lambda": 0.03337328131744013,
+          "iterations": 300,
+          "converged": false,
+          "elapsed_seconds": 0.7637607699998625,
+          "snr_db": 23.623143274484292,
+          "relative_l2_error": 0.06589353946746655,
+          "nonzero_coefficients": 2393,
+          "coefficient_count": 28889,
+          "objective_first": 14.857601050297436,
+          "objective_last": 7.649258330122067
+        }
+      }
+    }
+  ]
+}
