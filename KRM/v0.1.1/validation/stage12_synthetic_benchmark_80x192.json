@@ -1,0 +1,22 @@
+{
+  "benchmark": "KRM-Stage12-sparse-grid-smoke-1.0",
+  "seed": 20261117,
+  "frames": 80,
+  "bins": 192,
+  "grid_cells": 15360,
+  "active_probability": 0.12,
+  "active_cells": 1850,
+  "original_regions": 1620,
+  "active_regions": 558,
+  "elapsed_seconds": 2.566355496999904,
+  "python_tracemalloc_peak_bytes": 16155147,
+  "python_tracemalloc_peak_mib": 15.40674877166748,
+  "cell_conservation": true,
+  "canonical_result_hash": "9e5ecc50c5206313b1b2eb5e2dec7f92e7350c6cd20c52ad9234694adc08f626",
+  "limitations": [
+    "tracemalloc is not process RSS",
+    "single synthetic seed/config",
+    "not a 512 MiB enforcement test",
+    "not real-audio accuracy validation"
+  ]
+}
