@@ -438,7 +438,7 @@ These integrations apply to the KASF v3 development line and do not imply that K
 ---
 # 9. KASF v3.0 — Current Development
 
-**Current internal development revision: KASF v3.0 Rev.0.2.12**
+**Current internal development revision: KASF v3.0 Rev.0.2.13**
 
 **Development started:** 2026-11-17
 
@@ -464,8 +464,6 @@ The v2.0 baseline remains fixed and available as the reference implementation.
 KASF v3 includes compatibility handling for legacy v2 KCP settings. The KCP1 container format is kept distinct from the newer internal engine configuration.
 
 Settings that can be represented by the v2 configuration can be mapped for compatibility checks. A v3-only combination that has no equivalent in v2 must not be silently mapped to a different v2 mode; resume compatibility should be rejected when the processing semantics cannot be preserved.
-
-A complete real-audio, interrupted-run, cross-version resume test has not been established for every v2/v3 configuration. Compatibility claims should be limited to the structures and settings actually covered by tests.
 
 ### Development Rules
 
@@ -510,7 +508,6 @@ KASF has several areas requiring continued investigation.
 - Recovery behavior
 - Storage quota limitations
 - OPFS availability
-- Full real-device cross-version KCP resume behavior remains to be verified across all configurations
 
 ### Compatibility
 
