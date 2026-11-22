@@ -15,7 +15,7 @@ https://suguru-1026.github.io/KASF/reader
 https://suguru-1026.github.io/KASF/v2.0_rev.0.9.21
 
 ## Generator v3.0 Rev.0.2.2
-https://suguru-1026.github.io/....
+https://suguru-1026.github.io/KASF/v3.0/Rev.0.2.2
 
 
 ---
