@@ -12,7 +12,7 @@ Note: The HTML interface is currently available in Japanese only.
 https://suguru-1026.github.io/KASF/reader
 
 ## Generator v2.0 
-https://suguru-1026.github.io/KASF/
+https://suguru-1026.github.io/KASF/v2.0_rev.0.9.21
 
 ## Generator v3.0 Rev.0.2.2
 https://suguru-1026.github.io/....
