@@ -5,18 +5,15 @@
 > Project documentation / README  
 > Documentation date: 2026-11-17
 
-# Web Tools
+## Web Tools
 Note: The HTML interface is currently available in Japanese only.
 
-## Reader v1.2
-https://suguru-1026.github.io/KASF/reader
+### KASF Reader
+- [Reader v1.2](https://suguru-1026.github.io/KASF/reader/)
 
-## Generator v2.0 
-https://suguru-1026.github.io/KASF/v2.0_rev.0.9.21
-
-## Generator v3.0 Rev.0.2.2
-https://suguru-1026.github.io/KASF/v3.0/Rev.0.2.2
-
+### KASF Generator
+- [Generator v2.0 — Rev.0.9.21](https://suguru-1026.github.io/KASF/v2.0_rev.0.9.21/)
+- [Generator v3.0 — Rev.0.2.2](https://suguru-1026.github.io/KASF/v3.0/Rev.0.2.2/)
 
 ---
 
