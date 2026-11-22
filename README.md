@@ -5,6 +5,19 @@
 > Project documentation / README  
 > Documentation date: 2026-11-17
 
+# Web Tools
+Note: The HTML interface is currently available in Japanese only.
+
+## Reader v1.2
+https://suguru-1026.github.io....
+
+## Generator v2.0 
+https://suguru-1026.github.io/....
+
+## Generator v3.0 Rev.0.2.2
+https://suguru-1026.github.io/....
+
+
 ---
 
 # 1. Project Overview
