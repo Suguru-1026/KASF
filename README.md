@@ -2,8 +2,8 @@
 ## Kinoko Audio Structure (File)
 *Experimental Audio Encoding, Compression and Reconstruction Project*
 
-> Project documentation / README  
-> Documentation date: 2026-11-17
+> Project documentation / README
+> Documentation date: 2026-11-22
 
 ## Web Tools
 Note: The HTML interface is currently available in Japanese only.
@@ -12,11 +12,10 @@ Note: The HTML interface is currently available in Japanese only.
 - [Reader v1.2](https://suguru-1026.github.io/KASF/reader/)
 
 ### KASF Generator
-- [Generator v2.0 — Rev.0.9.21](https://suguru-1026.github.io/KASF/v2.0_rev.0.9.21/)
-- [Generator v3.0 — Rev.0.2.2](https://suguru-1026.github.io/KASF/v3.0/Rev.0.2.2/)
+- [Generator v2.0 — Published page (page identifies itself as Rev.0.9.20 + OPFS Manager)](https://suguru-1026.github.io/KASF/v2.0_rev.0.9.21/)
+- [Generator v3.0 — Public Web build (Rev.0.2.2)](https://suguru-1026.github.io/KASF/v3.0/Rev.0.2.2/)
 
 ---
-
 # 1. Project Overview
 
 KASF is an experimental audio encoding and reconstruction project.
@@ -24,7 +23,6 @@ KASF is an experimental audio encoding and reconstruction project.
 Its primary objective is to represent audio through frequency-domain components rather than relying exclusively on conventional PCM sample storage.
 
 The project explores:
-
 - Frequency-domain audio analysis
 - Spectral component extraction
 - Predictive component tracking
@@ -42,16 +40,21 @@ KASF is developed incrementally, with experimental revisions, regression testing
 |---|---|
 | KASF v1 | Original format generation |
 | KASF v2.0 | Fixed baseline |
-| KASF v2.0 Rev.0.9.21 | Official baseline |
-| KASF v3.0 Rev.0.1.0 | In development |
-| KRM-v1 Rev.0.1.0 | Related independent project |
+| KASF v2.0 Rev.0.9.21 | Official fixed baseline |
+| KASF v3.0 | Active development |
+| KASF v3.0 Rev.0.2.12 | Latest internal development revision |
+| KASF v3.0 Web Generator | Public Web build: Rev.0.2.2 |
+| KRM v1.1.0 | Canonical KRM reference package; independently versioned |
 
-**Current development target:** KASF v3.0 Rev.0.1.0
+**Current development target:** KASF v3.0 Rev.0.2.12
 
 **Latest fixed v2.0 baseline:** KASF v2.0 Rev.0.9.21
 
----
+**Current public v3.0 Web build:** KASF v3.0 Rev.0.2.2
 
+The latest internal development revision and the public Web build are tracked separately. The public Web build has not been updated to every internal development revision.
+
+---
 # 2. Project Architecture
 
 KASF has three major conceptual stages:
@@ -69,7 +72,6 @@ The architecture has evolved considerably between v1 and v2.
 ---
 
 # 3. KASF v1 — Original Generation
-
 ## 3.1 Overview
 
 KASF v1 established the original component-based audio representation.
@@ -85,7 +87,6 @@ Its principal characteristics include:
 - Independent Generator and Reader
 
 ## 3.2 Binary Structure
-
 ### Header
 
 The original header occupies 32 bytes.
@@ -152,7 +153,6 @@ This demonstrated that the original representation could reconstruct audio, but 
 The difference between original and encoded sizes motivated further compression research.
 
 ---
-
 # 4. KASF v2.0 — Advanced Encoding Generation
 
 ## 4.1 Overview
@@ -164,7 +164,6 @@ Its development focuses on improving component tracking, frequency estimation, p
 The v2 generation retains compatibility with the KASF v1 binary representation and Reader architecture.
 
 ## 4.2 Major Technical Features
-
 ### Predictive Tracking
 
 Predictive Tracking estimates component behavior between successive frames.
@@ -196,7 +195,6 @@ Band-dependent amplitude compensation was explored to address differences in spe
 Multiresolution analysis was incorporated into the v2 development line to investigate frequency resolution and component detection.
 
 ---
-
 # 5. v2.0 Development History
 
 The following records describe important development stages, not necessarily separate public releases.
@@ -267,7 +265,7 @@ This remains an important consideration in future development.
 
 ## 5.4 Rev.0.9.21 — Fixed Baseline
 
-<escape>KASF v2.0 Rev.0.9.21</escape> is the officially fixed v2.0 baseline.
+KASF v2.0 Rev.0.9.21 is the officially fixed v2.0 baseline.
 
 Its encoding lineage is based on the Rev.0.9.19 generation, with additional storage and recovery hardening.
 
@@ -338,7 +336,6 @@ These tests included simulated OPFS behavior.
 A full real-device long-duration verification was not completed as part of the baseline validation.
 
 ---
-
 # 6. Performance and Compression Evaluation
 
 KASF evaluates compression through both storage efficiency and reconstruction quality.
@@ -379,7 +376,6 @@ This is a historical experimental result, not a guaranteed performance figure fo
 The compression ratio alone does not establish perceptual transparency.
 
 ---
-
 # 7. File Format and Compatibility
 
 Primary file extension:
@@ -408,41 +404,68 @@ KASF v2.0 preserves the established v1 output format.
 The exact binary serialization specification should be maintained separately from this README.
 
 ---
-
 # 8. KRM Relationship
 
 KRM is a related project with its own independent versioning.
 
-Current fixed project version:
+The canonical KRM reference package is:
 
-`KRM-v1 Rev.0.1.0`
+`KRM_Complete_v1.1.0.zip`
 
-KRM is not considered formally integrated into KASF v2.0.
+KRM v1.1.0 remains independently versioned. Its Python implementation is the reference implementation for the corresponding KRM processing stages; the browser-side KRM code in KASF is a separate integration/port.
 
-Potential integration concepts and interfaces must be distinguished from implemented functionality.
+### KASF v2.0
 
-In particular, the following should not be considered implemented merely because they have been discussed:
+KRM is not formally integrated into the fixed KASF v2.0 baseline.
 
-- KRC
-- KRM-IF
-- BASE + RAW_RESIDUAL
-- KRM-FC / SIM integration
+### KASF v3.0
 
-Future integration requires explicit implementation and validation.
+KASF v3.0 includes experimental browser-side KRM integration. The implemented paths include:
+
+- External `.krmi` input with its matching original WAV
+- External `.kasf` input with its matching original WAV
+- KRM-IF v0.1 / v0.2 block-based reading and validation
+- Stage11 normalized JSON generation
+- Stage11 normalized JSON preview in the Workbench
+- Stage12 browser-side processing integration
+
+For KRM-IF v0.1 / v0.2, the browser reader validates data in blocks rather than expanding the entire container into one large in-memory array. The Stage11 standard profile remains distinct from the experimental segmented full-range profile; segmented analysis can produce different results from one-pass analysis.
+
+The KASF Reader-based `.kasf` path uses the matching WAV for sample-rate and sample-count information. Exact parity with every final normalization/quantization step of the full KASF application export path has not been established. The input provenance and validation state should therefore remain explicit in generated data.
+
+These integrations apply to the KASF v3 development line and do not imply that KRM is integrated into KASF v2.0. Other KRM subsystems, including KRM-FC / SIM, should be treated as separate unless their integration is independently implemented and validated.
 
 ---
-
 # 9. KASF v3.0 — Current Development
 
-<escape>KASF v3.0 Rev.0.1.0</escape>
+**Current internal development revision: KASF v3.0 Rev.0.2.12**
 
-**Development started: 2026-11-17**
+**Development started:** 2026-11-17
+
+**Current public Web build:** Rev.0.2.2 (tracked separately from the latest internal development revision)
 
 KASF v3.0 represents the next major development generation.
 
-At the time of this document, the project has entered its initial development stage.
-
 The v2.0 baseline remains fixed and available as the reference implementation.
+
+### Current Development Areas
+
+- Preserve KASF v1 binary output and Reader compatibility where applicable.
+- Maintain the v3 storage layer and its independently tracked baseline.
+- Integrate browser-side KRM input and Stage11 / Stage12 processing paths.
+- Support chunk-based validation and reading for KRM-IF v0.1 / v0.2.
+- Provide Stage11 normalized JSON generation and Workbench preview.
+- Keep the Stage11 standard profile distinguishable from experimental segmented full-range analysis.
+- Keep KCP compatibility handling explicit when transferring or resuming work across v2/v3 revisions.
+- Keep the user-facing layout aligned with the public Rev.0.2.2 interface while retaining newer internal processing controls.
+
+### KCP and Cross-Version Compatibility
+
+KASF v3 includes compatibility handling for legacy v2 KCP settings. The KCP1 container format is kept distinct from the newer internal engine configuration.
+
+Settings that can be represented by the v2 configuration can be mapped for compatibility checks. A v3-only combination that has no equivalent in v2 must not be silently mapped to a different v2 mode; resume compatibility should be rejected when the processing semantics cannot be preserved.
+
+A complete real-audio, interrupted-run, cross-version resume test has not been established for every v2/v3 configuration. Compatibility claims should be limited to the structures and settings actually covered by tests.
 
 ### Development Rules
 
@@ -455,12 +478,11 @@ The v2.0 baseline remains fixed and available as the reference implementation.
 
 ### v3.0 Specification
 
-Detailed v3.0 architecture and format specifications are under development.
+Detailed v3.0 architecture and format specifications continue to evolve.
 
 No unconfirmed feature should be presented as an implemented v3.0 capability.
 
 ---
-
 # 10. Known Limitations
 
 KASF has several areas requiring continued investigation.
@@ -479,6 +501,7 @@ KASF has several areas requiring continued investigation.
 - Memory consumption
 - Long-running Worker stability
 - Chunk processing overhead
+- Stage11 segmented analysis is experimental and is not numerically identical to one-pass full-range analysis
 
 ### Storage
 
@@ -487,15 +510,16 @@ KASF has several areas requiring continued investigation.
 - Recovery behavior
 - Storage quota limitations
 - OPFS availability
+- Full real-device cross-version KCP resume behavior remains to be verified across all configurations
 
 ### Compatibility
 
 - Browser-dependent input decoding
 - Reader compatibility
 - Future format evolution
+- Exact full-application export parity for the KASF Reader-based Stage11 input path has not been established
 
 ---
-
 # 11. Development Philosophy
 
 KASF follows these principles:
@@ -525,7 +549,6 @@ Experimental results should be associated with exact revisions and test conditio
 Implemented, tested, experimentally evaluated and planned features must remain distinguishable.
 
 ---
-
 # 12. Project Timeline
 
 | Date | Milestone |
@@ -538,9 +561,10 @@ Implemented, tested, experimentally evaluated and planned features must remain d
 | 2026-11-17 | v2.0 Rev.0.9.21 fixed |
 | 2026-11-17 | KRM-v1 Rev.0.1.0 fixed |
 | 2026-11-17 | v3.0 Rev.0.1.0 development started |
+| 2026-11-22 | v3.0 internal development reached Rev.0.2.12 |
+| 2026-11-22 | KRM-IF block-based input and Stage11 normalized JSON Workbench integration documented |
 
 ---
-
 # 13. Terminology
 
 | Term | Meaning |
@@ -556,12 +580,15 @@ Implemented, tested, experimentally evaluated and planned features must remain d
 | CRC-32C | Data integrity checksum |
 | Worker A/B | Independent encoding Workers |
 | Worker C | Common input analysis Worker |
+| KRM-IF | KRM interchange format used for Base / Residual data exchange |
+| Stage11 | KRM analysis stage producing normalized analysis data |
+| Stage12 | KRM follow-up processing stage |
 
 ---
-
 **KASF Project Documentation**
 
-Version: README Draft 2  
-Documentation date: 2026-11-17  
-Current development: KASF v3.0 Rev.0.1.0  
+Version: README Draft 3
+Documentation date: 2026-11-22
+Current development: KASF v3.0 Rev.0.2.12
+Current public v3.0 Web build: Rev.0.2.2
 Fixed reference: KASF v2.0 Rev.0.9.21
