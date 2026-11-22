@@ -9,10 +9,10 @@
 Note: The HTML interface is currently available in Japanese only.
 
 ## Reader v1.2
-https://suguru-1026.github.io....
+https://suguru-1026.github.io/KASF/reader
 
 ## Generator v2.0 
-https://suguru-1026.github.io/....
+https://suguru-1026.github.io/KASF/
 
 ## Generator v3.0 Rev.0.2.2
 https://suguru-1026.github.io/....
