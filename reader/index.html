@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KASF Reader v1.2 — Optimized</title>
+
+<style>
+body {
+    font-family: sans-serif;
+    background: #111;
+    color: #eee;
+    margin: 20px;
+}
+
+h1 {
+    margin-bottom: 8px;
+}
+
+.box {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.panel {
+    background: #1b1b1b;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.drop {
+    border: 2px dashed #666;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.drop.dragover {
+    border-color: #aaa;
+    background: #222;
+}
+
+button,
+select {
+    font-size: 15px;
+    padding: 7px 10px;
+    margin: 4px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+}
+
+.stat {
+    background: #151515;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.stat-name {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.stat-value {
+    font-size: 18px;
+    margin-top: 3px;
+}
+
+progress {
+    width: 100%;
+    height: 20px;
+}
+
+#log {
+    white-space: pre-wrap;
+    background: #080808;
+    border: 1px solid #333;
+    padding: 12px;
+    min-height: 160px;
+    max-height: 400px;
+    overflow: auto;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+canvas {
+    width: 100%;
+    height: 180px;
+    background: #050505;
+    border: 1px solid #333;
+}
+
+.muted { color: #9eb3ba; font-size: 13px; line-height: 1.5; }
+label {
+    display: inline-block;
+    margin: 5px 12px 5px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>KASF Reader v1.2</h1>
+<p class="muted">同じKASF v1を高速・低メモリで再生。6バイトComponentとPeriodic Hann OLAは維持。DC Guardと重なり正規化はOFFにすれば旧版と一致します。</p>
+
+<div class="panel">
+
+<div id="drop" class="drop">
+    KASFファイルをここにドロップ<br>
+    またはクリックして選択
+</div>
+
+<input
+    id="fileInput"
+    type="file"
+    accept=".kasf,application/octet-stream"
+    hidden
+>
+
+</div>
+
+<div class="panel">
+
+<h3>出力設定</h3>
+
+<label>
+    Sample Rate:
+    <select id="sampleRate">
+        <option value="22050">22050 Hz</option>
+        <option value="44100" selected>44100 Hz</option>
+        <option value="48000">48000 Hz</option>
+        <option value="96000">96000 Hz</option>
+    </select>
+</label>
+
+<label>
+    合成方式:
+    <select id="synthesisMode">
+      <option value="fast" selected>Fast — 漸化式＋低RAM</option>
+      <option value="reference">Reference — 従来Math.sin計算</option>
+    </select>
+</label>
+<label>
+    Component再生:
+    <select id="componentsMode">
+      <option value="noDC" selected>DC Guard — 0Hzを除外（推奨）</option>
+      <option value="all">Legacy — 全Componentを再生（完全互換）</option>
+      <option value="onlyDC">Diagnostic — 0Hzだけ再生（原因切り分け）</option>
+    </select>
+</label>
+<label><input type="checkbox" id="normalizeOLA" checked> Odd-frame COLA補正（重なり部分のみ）</label>
+<label><input type="checkbox" id="recover"> 破損フレームの再同期（実験的）</label>
+<br>
+<button id="playButton" disabled>▶ 再生</button>
+<button id="stopButton" disabled>■ 停止</button>
+<button id="wavButton" disabled>WAV保存（32bit float）</button>
+<button id="cancelButton" disabled>処理キャンセル</button>
+
+</div>
+
+<div class="panel">
+
+<h3>ファイル情報</h3>
+
+<div class="grid">
+
+<div class="stat">
+    <div class="stat-name">Version</div>
+    <div id="version" class="stat-value">-</div>
+</div>
+
+<div class="stat">
+    <div class="stat-name">Channels</div>
+    <div id="channels" class="stat-value">-</div>
+</div>
+
+<div class="stat">
+    <div class="stat-name">Declared Frames</div>
+    <div id="declaredFrames" class="stat-value">-</div>
+</div>
+
+<div class="stat">
+    <div class="stat-name">Read Frames</div>
+    <div id="readFrames" class="stat-value">-</div>
+</div>
+
+<div class="stat">
+    <div class="stat-name">Frame Duration</div>
+    <div id="frameDuration" class="stat-value">-</div>
+</div>
+
+<div class="stat">
+    <div class="stat-name">Estimated Duration</div>
+    <div id="duration" class="stat-value">-</div>
+</div>
+
+<div class="stat">
+    <div class="stat-name">Skipped Frames</div>
+    <div id="skippedFrames" class="stat-value">-</div>
+</div>
+
+<div class="stat">
+    <div class="stat-name">Trailing Bytes</div>
+    <div id="trailingBytes" class="stat-value">-</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h3>進行状況</h3>
+
+<progress id="progress" value="0" max="1"></progress>
+<p id="status" aria-live="polite">未処理</p>
+<p id="metrics" class="muted"></p>
+
+</div>
+
+<div class="panel">
+
+<h3>波形</h3>
+
+<canvas id="waveform" width="1000" height="180"></canvas>
+
+</div>
+
+<div class="panel">
+
+<h3>ログ</h3>
+
+<div id="log"></div>
+
+</div>
+
+</div>
+
+<script src="kasf-reader-core.js"></script>
+<script src="kasf-reader.js"></script>
+
+</body>
+</html>
